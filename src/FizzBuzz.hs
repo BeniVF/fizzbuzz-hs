@@ -6,7 +6,7 @@ import Data.List
 import Data.Char
 
 generateFizzBuzz :: [Int] -> [String]
-generateFizzBuzz = fmap fizzbuzzRules
+generateFizzBuzz = fmap fizzBuzzRules
 
 createFizzBuzzReport :: [String] -> [(String, Int)]
 createFizzBuzzReport xs = othersTotal <> wordsTotal
@@ -15,8 +15,8 @@ createFizzBuzzReport xs = othersTotal <> wordsTotal
     othersTotal = [("others", length others) | not (null others)]
     wordsTotal = (\xs -> (head xs, length xs)) <$> (group . sort) words
 
-fizzbuzzRules :: Int -> String
-fizzbuzzRules x = fromMaybe (show x) (fold rules x)
+fizzBuzzRules :: Int -> String
+fizzBuzzRules x = fromMaybe (show x) (fold rules x)
   where 
     rules = [fizz, buzz]
 
