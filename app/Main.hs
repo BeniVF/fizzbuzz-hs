@@ -3,5 +3,7 @@ module Main where
 import FizzBuzz
 
 main :: IO ()
-main = print $ (createFizzBuzzReport .generateFizzBuzz ) [0 .. 20]
-
+main = interact $ unwords . map show . (createFizzBuzzReport . generateFizzBuzz) . buildRange . map read . words
+  where 
+    buildRange :: [Int] -> [Int]
+    buildRange xs = [head xs .. (head .tail) xs]
